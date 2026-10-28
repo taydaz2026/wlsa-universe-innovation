@@ -1,0 +1,120 @@
+/* V6 preview: shared chrome in every universe, themes, strings, collapsible atlas, fly-through transitions */
+[hidden]{display:none!important}
+
+/* ---- Overlay universes reuse the main header / intro / search so every universe looks the same ---- */
+#edu-space{background:radial-gradient(ellipse at 49% 44%,var(--t1,#1c1b54) 0%,var(--t2,#080f30) 42%,var(--t3,#030815) 86%)}
+#edu-space .eyebrow{color:var(--accent,#78d8fa)}
+#edu-space .brand-title{border-left-color:var(--accent,#31547d)}
+.edu-crumb{position:absolute;z-index:13;left:30px;top:100px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:12px;color:#9fd6ff}
+.edu-crumb button{color:var(--accent,#c8ebff);background:none;border:0;padding:3px 2px}
+.edu-crumb button:hover{text-decoration:underline}
+.edu-crumb strong{color:#fff}
+#edu-space .intro{top:132px}
+#edu-space .search{top:268px}
+#edu-space .edu-stage{inset:104px 375px 40px 25px}
+.edu-panel{top:118px;right:22px;width:335px;border-color:var(--accent,#4f6ba1)}
+.edu-kicker,.edu-leadline,.edu-lead{color:var(--accent,#ffdda8)}
+.edu-lead{display:block;margin-top:2px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.edu-leadline{margin:-4px 0 8px;font-size:12px;font-weight:700}
+.edu-hint{display:block;margin-top:3px;font-size:10px;letter-spacing:.06em;color:var(--accent,#9fb7ff);animation:hintPulse 2s ease-in-out infinite}
+@keyframes hintPulse{50%{opacity:.35}}
+.edu-node.enter .edu-sphere{box-shadow:0 0 0 6px #ffffff14,0 0 60px var(--planet)}
+.edu-none{font-size:11px;color:#8fa6cc}
+.edu-links{display:flex;flex-direction:column;gap:6px;margin:6px 0 14px}
+.edu-links button{text-align:left;color:#ffe3a6;background:#3a2c0f66;border:1px solid #8a6a2c;border-radius:9px;padding:8px 10px;font-size:12px}
+.edu-links button:hover{background:#4e3a18}
+.edu-link-badge{position:absolute;right:-4px;top:-4px;font-style:normal;font-size:12px;line-height:1;background:#3a2c0f;border:1px solid #c9a24d;border-radius:99px;padding:3px}
+.edu-sphere{position:relative}
+#cross-links .connected button{border-color:#8a6a2c;color:#ffe3a6}
+
+/* Strings: centre to each planet (percent coordinates inside the orbit box) */
+.edu-strings{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+.edu-strings line{stroke-width:1.4;stroke-opacity:.35;stroke-dasharray:5 6;vector-effect:non-scaling-stroke}
+.edu-strings line.on{stroke-opacity:.95;stroke-width:2.2;animation:stringFlow 1.6s linear infinite}
+@keyframes stringFlow{to{stroke-dashoffset:-22}}
+
+/* ---- Universe Atlas: bottom-right, draggable, collapsible, above every universe ---- */
+#app .minimap{left:auto;top:auto;right:20px;bottom:20px;z-index:45;width:290px;transition:width .22s ease,border-color .2s}
+#app .minimap.pinned{width:min(700px,calc(100vw - 40px))}
+#app .minimap.pinned{border-color:var(--gold)}
+#app .minimap.collapsed{width:auto;padding:7px 10px}
+#app .minimap.collapsed .mini-chart,#app .minimap.collapsed .map-footer,#app .minimap.collapsed #map-pin,#app .minimap.collapsed #expandmap{display:none}
+#app .minimap.collapsed .map-title{margin:0;gap:14px}
+.map-title{cursor:grab;touch-action:none;user-select:none}
+.minimap.dragging .map-title{cursor:grabbing}
+.map-btns{display:flex;gap:5px}
+#map-enter{border:1px solid #a18bfd;border-radius:7px;background:#6045b4;color:#fff;font-size:10px;font-weight:800;padding:4px 8px}
+#map-enter:hover{background:#7456cc}
+.mini-chart,.full-chart{cursor:default}
+.g-hier{stroke:#3d6fa3;stroke-width:2;opacity:.55}.g-hier.hot{stroke:#8fe0ff;opacity:1;stroke-width:3}
+.g-link{fill:none;stroke:#ffcb6e;stroke-width:2.5;stroke-dasharray:9 8;opacity:.75;animation:stringFlow 2s linear infinite}.g-link.hot{stroke-width:4;opacity:1}
+.g-node{cursor:pointer}.g-node:focus-visible .g-dot{stroke:#ffcb6e;stroke-width:4}
+.g-dot{stroke:#ffffff55;stroke-width:1.5}.g-node:hover .g-dot{stroke:#fff;stroke-width:3}
+.g-dot.here{stroke:#fff;stroke-width:5}.g-dot.sel{stroke:#ffcb6e;stroke-width:5}
+.g-label{fill:#e7f5ff;font-weight:700;pointer-events:none;paint-order:stroke;stroke:#06142a;stroke-width:4px}
+.g-lead{fill:#ffdda8;pointer-events:none;paint-order:stroke;stroke:#06142a;stroke-width:3px}
+
+/* ---- transitions ---- */
+.v4-ribbon{position:fixed;left:50%;bottom:6px;transform:translateX(-50%);z-index:200;padding:3px 12px;border-radius:99px;background:#4e3a18;color:#ffdda8;border:1px solid #896a32;font:700 11px/1.4 system-ui,sans-serif;letter-spacing:.08em;pointer-events:none}
+@keyframes fxOutDeep{from{transform:scale(1);opacity:1}to{transform:scale(2.6);opacity:0}}
+@keyframes fxOutUp{from{transform:scale(1);opacity:1}to{transform:scale(.55);opacity:0}}
+#edu-space.fx-outdeep{animation:fxOutDeep .6s ease-in both}
+#edu-space.fx-outup{animation:fxOutUp .6s ease-in both}
+#edu-space.fx-rise{animation:fxRise .55s cubic-bezier(.2,.8,.2,1) both}
+@media(max-width:990px){#edu-space .intro,#edu-space .search,.edu-crumb{display:none}.edu-panel{top:auto;right:12px;width:auto}}
+@media(prefers-reduced-motion:reduce){#edu-space.fx-outdeep,#edu-space.fx-outup,#edu-space.fx-rise,.edu-hint,.g-link,.edu-strings line.on{animation:none!important}#app .minimap{transition:none}}
+
+/* ---- universe-wide search results ---- */
+.search-results{position:absolute;top:calc(100% + 6px);left:0;width:340px;max-height:372px;overflow:auto;padding:4px;background:#07162bf5;border:1px solid #356c9c;border-radius:12px;box-shadow:0 14px 40px #000a;z-index:60;backdrop-filter:blur(14px)}
+.sr-item{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;cursor:pointer;color:#e7f5ff}
+.sr-item[aria-selected="true"],.sr-item:hover{background:#17406b}
+.sr-ico{font-size:20px;width:26px;text-align:center;flex:none}
+.sr-main{display:flex;flex-direction:column;min-width:0;font-size:13px}
+.sr-main em{font-style:normal;color:#ffdda8;font-size:12px}
+.sr-main small{color:#8fb0d6;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-empty{padding:12px;font-size:12px;color:#9bb2d4}
+
+/* ---- user-resizable map (overrides the pinned width once sized) ---- */
+#app .minimap.sized:not(.collapsed),#app .minimap.sized:not(.collapsed).pinned{width:var(--map-w)}
+.map-grip{position:absolute;top:3px;width:18px;height:18px;z-index:2;border-radius:5px;touch-action:none}
+.map-grip:before{content:'';position:absolute;inset:4px;border-top:2px solid #8fc9ff;opacity:.7}
+.minimap[data-side=right] .map-grip{left:3px;cursor:nwse-resize}.minimap[data-side=right] .map-grip:before{border-left:2px solid #8fc9ff}
+.minimap[data-side=left] .map-grip{right:3px;cursor:nesw-resize}.minimap[data-side=left] .map-grip:before{border-right:2px solid #8fc9ff}
+.map-grip:hover{background:#ffffff18}
+#app .minimap.collapsed .map-grip,#app .minimap.collapsed #map-size{display:none}
+#map-size{border:1px solid #3b6992;border-radius:7px;background:#183e63;color:#bfe8ff;font-size:10px;padding:4px 8px}
+#map-size:hover{background:#286291}
+.minimap.resizing{transition:none!important;user-select:none}
+
+/* ---- v7: proposed vs stated connections, depth-aware atlas ---- */
+.g-link.proposed{stroke:#7fe0ff;stroke-dasharray:3 7;opacity:.6}.g-link.proposed.hot{opacity:1}
+.edu-links button.proposed{color:#bff1ff;background:#0f3a4766;border-color:#2f7f96}
+.edu-links button em{font-style:normal;font-size:10px;letter-spacing:.05em;text-transform:uppercase;margin-left:6px;padding:1px 6px;border-radius:99px;background:#0a2c3a;color:#7fe0ff}
+.edu-tbc{font-size:12px;color:#9bb2d4;font-style:italic}
+.minimap .mini-chart,.full-chart{cursor:default}
+#overview-modal{z-index:80}
+/* v7 layout fixes: long intro titles, and room under the panels so the atlas never hides their buttons */
+#edu-space .search{top:300px}
+#edu-space .intro h2{font-size:23px}
+.edu-panel{padding-bottom:270px}
+.side-body{padding-bottom:270px}
+@media(max-width:990px){.edu-panel{padding-bottom:15px}.side-body{padding-bottom:15px}}
+.edu-links .where{display:block;margin-top:2px;font-size:10px;color:#9bb2d4;letter-spacing:.03em}
+.edu-links button em{display:inline-block}
+
+/* v8: guided tour in every universe */
+#edu-space .tour{z-index:13;bottom:27px}
+/* The "In this universe" list is a small pill that opens on hover/focus, so it never covers planets or the tour bar */
+#edu-space .edu-map{bottom:27px;z-index:14}
+#edu-space .edu-map h4{margin:0;cursor:default}
+#edu-map-links{display:none;flex-wrap:wrap;gap:6px;margin-top:8px;max-width:520px}
+#edu-space .edu-map:hover #edu-map-links,#edu-space .edu-map:focus-within #edu-map-links{display:flex}
+#edu-space .edu-map h4:after{content:' ▴';opacity:.7}
+@media(max-width:990px){#edu-space .tour{bottom:280px;font-size:10px}#edu-space .edu-map{display:none}}
+
+/* v9: AI circuit-chip icon (inline SVG) sizes */
+.aichip{width:1.15em;height:1.15em;vertical-align:-.22em;overflow:visible}
+.edu-node .edu-sphere .aichip{width:2.3em;height:2.3em;vertical-align:baseline}
+#edu-panel h3 .aichip{width:1.5em;height:1.5em;vertical-align:-.35em}
+.edu-map button .aichip{width:1.6em;height:1.6em;vertical-align:-.45em}
+.sr-ico .aichip{width:28px;height:28px;vertical-align:middle}

@@ -1,0 +1,12 @@
+/* V4 preview additions: level transitions, preview ribbon */
+.v4-ribbon{position:fixed;left:50%;bottom:6px;transform:translateX(-50%);z-index:200;padding:3px 12px;border-radius:99px;background:#4e3a18;color:#ffdda8;border:1px solid #896a32;font:700 11px/1.4 system-ui,sans-serif;letter-spacing:.08em;pointer-events:none}
+/* Entering from the main universe: the overlay grows out of the clicked planet. */
+@keyframes fxZoom{from{transform:scale(.06);opacity:0}60%{opacity:1}to{transform:scale(1);opacity:1}}
+/* Going deeper: the new system rushes toward you. Going up: it settles back. */
+@keyframes fxDive{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fxRise{from{transform:scale(1.35);opacity:0}to{transform:scale(1);opacity:1}}
+#edu-space.fx-zoom{animation:fxZoom .65s cubic-bezier(.2,.8,.2,1) both}
+.edu-stage.fx-dive{animation:fxDive .55s cubic-bezier(.2,.8,.2,1) both}
+.edu-stage.fx-rise{animation:fxRise .55s cubic-bezier(.2,.8,.2,1) both}
+.edu-crumb strong{color:#ffdda8}
+@media(prefers-reduced-motion:reduce){#edu-space.fx-zoom,.edu-stage.fx-dive,.edu-stage.fx-rise{animation:none!important}}
